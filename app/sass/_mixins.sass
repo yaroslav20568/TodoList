@@ -1,0 +1,18 @@
+=font($font_name, $file_name, $weight, $style)
+    @font-face
+        font-family: $font_name
+        font-display: swap
+        src: url("../fonts/dest/#{$file_name}.woff") format("woff"), url("../fonts/dest/#{$file_name}.woff2") format("woff2")
+        font-weight: #{$weight}
+        font-style: #{$style}
+
+=textCharact($font_size, $line_height, $font_weight)
+    font-size: $font_size
+    line-height: $line_height
+    font-weight: $font_weight
+
+=animationShadow($name, $duration, $type, $iteration, $color)
+    animation: $name $duration $type $iteration
+    @keyframes #{$name}
+        50%
+            box-shadow: 0px 0px 7px 2px $color
