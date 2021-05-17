@@ -8,7 +8,7 @@
 </head>
 <body>
     
-    <div class="todo-list">
+    <div class="todo-list show">
         <div class="container">
             <div class="todo-list__inner">
                 <h1 class="todo-list__title">To-do list</h1>
@@ -19,18 +19,13 @@
                 </div>
 
                 <ul class="todo-list__content">
-                    <div class="todo">
-                        <div class="todo__enumaration">1.</div>
-                        <label class="todo__label" for="checkbox1">
-                            <input class="todo__checkbox" type="checkbox" id="checkbox1">
-                            <div class="todo__fake-checkbox"></div>
-                            <div class="todo__title">Купить машину</div>
-                        </label>
-                        <div class="todo__date">16 May</div>
-                        <div class="todo__time">11:11</div>
-                        <div class="todo__delete"></div>
-                    </div>
+                    
                 </ul>
+
+                <div class="todo-list__message hide">
+                    <svg width="50" height="50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.571 38.155c3.929-2.38 14-5.714 22.858 0" stroke="#000" stroke-width="3"/><circle cx="25" cy="25" r="23" stroke="#000" stroke-width="4"/><ellipse cx="34" cy="17" rx="5" ry="4" fill="#000"/><ellipse cx="33.5" cy="17.5" rx="2.5" ry="1.5" fill="#fff"/><ellipse cx="16" cy="17" rx="5" ry="4" fill="#000"/><ellipse cx="16.5" cy="17.5" rx="2.5" ry="1.5" fill="#fff"/></svg>
+                    <h4 class="message__title"></h4>
+                </div>
             </div>
         </div>
     </div>

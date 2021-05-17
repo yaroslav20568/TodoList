@@ -42,8 +42,11 @@ h1, h2, h3, h4, h5, h6
     padding: 50px
     &__title
         +textCharact(40px, 1.25, 500)
-        text-align: center
         margin-bottom: 30px
+        text-align: center
+    &__message
+        text-align: center
+        +textCharact(20px, 1.25, 400)
 
 .todo-list
 	&__inner
@@ -92,16 +95,13 @@ h1, h2, h3, h4, h5, h6
 .todo
     &__checkbox:checked + &__fake-checkbox
         position: relative
-        border-radius: 0
-        border: 1px solid #000
-        transition: .5s linear
+        background-color: #8bf9fd
         &:before
             opacity: 1
-            transition: .5s linear
         
 .todo
     display: grid
-    grid-template-columns: 0.15fr 1fr .35fr .3fr .1fr
+    grid-template-columns: .09fr .05fr .65fr .20fr .16fr 0.05fr
     align-items: center
     background: #fff
     padding: 10px
@@ -163,7 +163,6 @@ h1, h2, h3, h4, h5, h6
         border-radius: 6px
         border: 1px solid transparentize(#fff, 0)
         background-color: #e4e3e3
-        transition: .5s linear
         &:before
             @extend %before-after
             background-image: url('../images/dest/icon-checked.svg')
@@ -171,11 +170,29 @@ h1, h2, h3, h4, h5, h6
             width: 13px
             height: 13px
             opacity: 0
-            transition: .5s linear
 	&__title
         font-weight: 500
         margin-left: 6px
-    
+
+.show
+    display: block
+    animation: show .3s linear
+    @keyframes show
+        0%
+            opacity: 0
+        100%
+            opacity: 1
+
+.hide
+    display: none
+
+svg
+    ellipse
+        +animationSvg(ell, 3s, linear, infinite, #000, #af0000)
+    path
+        +animationSvg(pa, 3s, linear, infinite, #000, #af0000)
+    circle
+        +animationSvg(circ, 3s, linear, infinite, #000, #af0000)
 
 
 @import "media"

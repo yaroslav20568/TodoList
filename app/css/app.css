@@ -379,8 +379,14 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 40px;
   line-height: 1.25;
   font-weight: 500;
+  margin-bottom: 30px;
+  text-align: center; }
+
+.todo-list__message {
   text-align: center;
-  margin-bottom: 30px; }
+  font-size: 20px;
+  line-height: 1.25;
+  font-weight: 400; }
 
 .todo-list__inner {
   max-width: 450px;
@@ -465,23 +471,16 @@ h1, h2, h3, h4, h5, h6 {
 
 .todo__checkbox:checked + .todo__fake-checkbox {
   position: relative;
-  border-radius: 0;
-  border: 1px solid #000;
-  -webkit-transition: .5s linear;
-  -o-transition: .5s linear;
-  transition: .5s linear; }
+  background-color: #8bf9fd; }
 
 .todo__checkbox:checked + .todo__fake-checkbox:before {
-  opacity: 1;
-  -webkit-transition: .5s linear;
-  -o-transition: .5s linear;
-  transition: .5s linear; }
+  opacity: 1; }
 
 .todo {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 0.15fr 1fr .35fr .3fr .1fr;
-  grid-template-columns: 0.15fr 1fr .35fr .3fr .1fr;
+  -ms-grid-columns: .09fr .05fr .65fr .20fr .16fr 0.05fr;
+  grid-template-columns: .09fr .05fr .65fr .20fr .16fr 0.05fr;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -585,24 +584,98 @@ h1, h2, h3, h4, h5, h6 {
   height: 20px;
   border-radius: 6px;
   border: 1px solid white;
-  background-color: #e4e3e3;
-  -webkit-transition: .5s linear;
-  -o-transition: .5s linear;
-  transition: .5s linear; }
+  background-color: #e4e3e3; }
 
 .todo__fake-checkbox:before {
   background-image: url("../images/dest/icon-checked.svg");
   background-repeat: no-repeat;
   width: 13px;
   height: 13px;
-  opacity: 0;
-  -webkit-transition: .5s linear;
-  -o-transition: .5s linear;
-  transition: .5s linear; }
+  opacity: 0; }
 
 .todo__title {
   font-weight: 500;
   margin-left: 6px; }
+
+.show {
+  display: block;
+  -webkit-animation: show .3s linear;
+          animation: show .3s linear; }
+
+@-webkit-keyframes show {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes show {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+.hide {
+  display: none; }
+
+svg ellipse {
+  -webkit-animation: ell 3s linear infinite;
+          animation: ell 3s linear infinite; }
+
+@-webkit-keyframes ell {
+  0% {
+    stroke: #000; }
+  50% {
+    stroke: #af0000; }
+  100% {
+    stroke: #000; } }
+
+@keyframes ell {
+  0% {
+    stroke: #000; }
+  50% {
+    stroke: #af0000; }
+  100% {
+    stroke: #000; } }
+
+svg path {
+  -webkit-animation: pa 3s linear infinite;
+          animation: pa 3s linear infinite; }
+
+@-webkit-keyframes pa {
+  0% {
+    stroke: #000; }
+  50% {
+    stroke: #af0000; }
+  100% {
+    stroke: #000; } }
+
+@keyframes pa {
+  0% {
+    stroke: #000; }
+  50% {
+    stroke: #af0000; }
+  100% {
+    stroke: #000; } }
+
+svg circle {
+  -webkit-animation: circ 3s linear infinite;
+          animation: circ 3s linear infinite; }
+
+@-webkit-keyframes circ {
+  0% {
+    stroke: #000; }
+  50% {
+    stroke: #af0000; }
+  100% {
+    stroke: #000; } }
+
+@keyframes circ {
+  0% {
+    stroke: #000; }
+  50% {
+    stroke: #af0000; }
+  100% {
+    stroke: #000; } }
 
 @media screen and (max-width: 580px) {
   .todo-list {
@@ -619,7 +692,8 @@ h1, h2, h3, h4, h5, h6 {
             flex-direction: column;
     -webkit-box-align: end;
         -ms-flex-align: end;
-            align-items: flex-end; }
+            align-items: flex-end;
+    margin-bottom: 15px; }
   .todo-list__add input {
     width: 100%;
     font-size: 16px;
@@ -632,7 +706,9 @@ h1, h2, h3, h4, h5, h6 {
   .todo-list {
     padding: 20px 0; }
   .todo-list__inner {
-    padding: 25px 15px; } }
+    padding: 25px 15px; }
+  .todo-list__message {
+    font-size: 17px; } }
 
 @media screen and (max-width: 380px) {
   .todo-list__inner {
@@ -643,3 +719,8 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 13px; }
   .todo__title {
     margin-left: 3px; } }
+
+@media screen and (max-width: 350px) {
+  .todo {
+    -ms-grid-columns: .09fr .05fr .65fr .23fr .20fr 0.05fr;
+    grid-template-columns: .09fr .05fr .65fr .23fr .20fr 0.05fr; } }

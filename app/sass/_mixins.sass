@@ -16,3 +16,13 @@
     @keyframes #{$name}
         50%
             box-shadow: 0px 0px 7px 2px $color
+
+=animationSvg($name, $duration, $type, $iteration, $colorOld, $colorNew)
+    animation: $name $duration $type $iteration
+    @keyframes #{$name}
+        0%
+            stroke: $colorOld
+        50%
+            stroke: $colorNew
+        100%
+            stroke: $colorOld
