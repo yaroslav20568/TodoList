@@ -66,7 +66,7 @@ window.addEventListener('DOMContentLoaded', () => {
     function addTodo() {
         let inpValue = addInp.value.charAt(0).toUpperCase() + addInp.value.substr(1).toLowerCase();
         addInp.value && arrayTodos.push({title: inpValue, isChecked: false, date: getDate(new Date()), time: getTime(new Date())});
-        showMessage()
+        showMessage();
         localStorage.setItem('arrayTodos', JSON.stringify(arrayTodos));
     }
 
@@ -110,4 +110,23 @@ window.addEventListener('DOMContentLoaded', () => {
 
     renderTodos();
     showMessage();
+
+    function chengeTheme() {
+        let themeCheckboxValue = JSON.parse(localStorage.getItem('themeCheckboxValue'));
+
+        if(themeCheckboxValue) {
+            document.querySelector('.todo-list').classList.remove('theme_light');
+            document.querySelector('.todo-list').classList.add('theme_dark');
+        } else {
+            document.querySelector('.todo-list').classList.remove('theme_dark');
+            document.querySelector('.todo-list').classList.add('theme_light');
+        }
+    }
+
+    let themeCheckbox = document.querySelector('.toggle-theme__checkbox');
+
+    themeCheckbox.addEventListener('click', () => {
+        localStorage.setItem('themeCheckboxValue', themeCheckbox.checked);
+        chengeTheme();
+    });
 });

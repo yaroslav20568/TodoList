@@ -11,6 +11,11 @@
     left: 50%
     transform: translate3d(-50%, -50%, 0)
 
+%pseudo-elements
+    content: ""
+    display: block
+    position: absolute
+
 body
     color: $mainColor
     font-size: $mainFont-size
@@ -40,22 +45,13 @@ h1, h2, h3, h4, h5, h6
     min-height: 100vh
     background-color: #bdbdbd
     padding: 50px
-    &__title
-        +textCharact(40px, 1.25, 500)
-        margin-bottom: 30px
-        text-align: center
-    &__message
-        text-align: center
-        +textCharact(20px, 1.25, 400)
-
-.todo-list
-	&__inner
+    &__inner
         max-width: 450px
         margin: 0 auto
         padding: 30px 40px
         background: #e4e3e3
         border-radius: 20px
-	&__add
+    &__add
         display: flex
         justify-content: space-between
         margin-bottom: 20px
@@ -91,14 +87,21 @@ h1, h2, h3, h4, h5, h6
                 width: 20px
                 height: 2px
                 background-color: #000
+    &__title
+        +textCharact(40px, 1.25, 500)
+        margin-bottom: 30px
+        text-align: center
+    &__message
+        text-align: center
+        +textCharact(20px, 1.25, 400)
+    svg
+        ellipse
+            +animationSvg(ell, 3s, linear, infinite, #000, #af0000)
+        path
+            +animationSvg(pa, 3s, linear, infinite, #000, #af0000)
+        circle
+            +animationSvg(circ, 3s, linear, infinite, #000, #af0000)
 
-.todo
-    &__checkbox:checked + &__fake-checkbox
-        position: relative
-        background-color: #8bf9fd
-        &:before
-            opacity: 1
-        
 .todo
     display: grid
     grid-template-columns: .09fr .05fr .65fr .20fr .16fr 0.05fr
@@ -113,7 +116,34 @@ h1, h2, h3, h4, h5, h6
         box-shadow: 0px 0px 3px 0px #FA00FF
     &:last-child
         margin-bottom: 0
-
+    &__label
+        cursor: pointer
+        display: flex
+        align-items: center
+    &__checkbox
+        display: none
+    &__checkbox:checked + &__fake-checkbox
+        position: relative
+        background-color: #8bf9fd
+        &:before
+            opacity: 1
+    &__fake-checkbox
+        position: relative
+        width: 20px
+        height: 20px
+        border-radius: 6px
+        border: 1px solid transparentize(#fff, 0)
+        background-color: #e4e3e3
+        &:before
+            @extend %before-after
+            background-image: url('../images/dest/icon-checked.svg')
+            background-repeat: no-repeat
+            width: 13px
+            height: 13px
+            opacity: 0
+    &__title
+        font-weight: 500
+        margin-left: 6px
     &__delete
         position: relative
         width: 100%
@@ -145,34 +175,8 @@ h1, h2, h3, h4, h5, h6
             background-repeat: no-repeat
             width: 17px
             height: 17px
-
     &__enumaration
         +textCharact(15px, 1.2, 700)
-        
-.todo
-	&__label
-        cursor: pointer
-        display: flex
-        align-items: center
-	&__checkbox
-        display: none
-	&__fake-checkbox
-        position: relative
-        width: 20px
-        height: 20px
-        border-radius: 6px
-        border: 1px solid transparentize(#fff, 0)
-        background-color: #e4e3e3
-        &:before
-            @extend %before-after
-            background-image: url('../images/dest/icon-checked.svg')
-            background-repeat: no-repeat
-            width: 13px
-            height: 13px
-            opacity: 0
-	&__title
-        font-weight: 500
-        margin-left: 6px
 
 .show
     display: block
@@ -186,13 +190,58 @@ h1, h2, h3, h4, h5, h6
 .hide
     display: none
 
-svg
-    ellipse
-        +animationSvg(ell, 3s, linear, infinite, #000, #af0000)
-    path
-        +animationSvg(pa, 3s, linear, infinite, #000, #af0000)
-    circle
-        +animationSvg(circ, 3s, linear, infinite, #000, #af0000)
+.toggle-theme
+    position: absolute
+    right: 12px
+    top: 12px
+    &__checkbox
+        display: none
+    &__checkbox:checked + &__fake-checkbox
+        background-color: #00239F
+        transition: .4s linear
+    &__checkbox:checked + &__fake-checkbox:before
+        background-color: #fff
+        left: 26px
+        transition: .4s linear
+    &__checkbox:checked + &__fake-checkbox:after
+        left: 32px
+        background-image: url(../images/dest/icon-moon.svg)
+        filter: drop-shadow(0px 0px 1px #000)
+        transition: .4s linear
+    &__fake-checkbox
+        position: relative
+        width: 48px
+        height: 25px
+        background-color: #3965FF
+        border-radius: 30px
+        cursor: pointer
+        transition: .4s linear
+        &:before
+            @extend %pseudo-elements
+            z-index: 1
+            left: 3px
+            top: 3px
+            width: 19px
+            height: 19px
+            background-color: #000
+            border-radius: 30px
+            transition: .4s linear
+        &:after
+            @extend %pseudo-elements
+            background-image: url(../images/dest/icon-sun.svg)
+            background-repeat: no-repeat
+            z-index: 2
+            left: 8px
+            top: 8px
+            width: 9px
+            height: 9px
+            transition: .4s linear
 
+.theme_dark
+    background-color: #545050
+    transition: .4s linear
+.theme_light
+    background-color: #bdbdbd
+    transition: .4s linear
 
 @import "media"
