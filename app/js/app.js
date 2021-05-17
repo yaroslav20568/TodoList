@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', () => {
         addInp = document.querySelector('.todo-list__add input'),
         todoList = document.querySelector('.todo-list__content');
     
-    let arrayTodos = [];
+    let arrayTodos = JSON.parse(localStorage.getItem('arrayTodos')) || [];
 
     function getDate(date) {
         let currentDate = date.toDateString().split(' ');
@@ -40,12 +40,34 @@ window.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
         });
+
+        let checkboxs = document.querySelectorAll('.todo__label input'),
+            deleteBtns = document.querySelectorAll('.todo__delete');
+
+        checkboxs.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                arrayTodos[index].isChecked = !arrayTodos[index].isChecked;
+                renderTodos();
+                localStorage.setItem('arrayTodos', JSON.stringify(arrayTodos));
+            });
+        });
+        
+        deleteBtns.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                arrayTodos.splice(index, 1);
+                document.querySelector('.todo').classList.add('todo_hide');
+                renderTodos();
+                showMessage();
+                localStorage.setItem('arrayTodos', JSON.stringify(arrayTodos));
+            });
+        });
     }
 
     function addTodo() {
         let inpValue = addInp.value.charAt(0).toUpperCase() + addInp.value.substr(1).toLowerCase();
         addInp.value && arrayTodos.push({title: inpValue, isChecked: false, date: getDate(new Date()), time: getTime(new Date())});
-        showMessage();
+        showMessage()
+        localStorage.setItem('arrayTodos', JSON.stringify(arrayTodos));
     }
 
     function showMessage() {
@@ -59,6 +81,7 @@ window.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.todo-list__message').classList.add('hide');
         }
     }
+
 
     addBtn.addEventListener('click', () => {
         addTodo();
