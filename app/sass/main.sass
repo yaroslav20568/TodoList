@@ -43,14 +43,17 @@ h1, h2, h3, h4, h5, h6
 
 .todo-list
     min-height: 100vh
-    background-color: #bdbdbd
+    background-color: var(--todoList-bc)
     padding: 50px
+    transition: background-color .4s linear
     &__inner
         max-width: 450px
         margin: 0 auto
         padding: 30px 40px
-        background: #e4e3e3
         border-radius: 20px
+        background-color: var(--todoListInner-bc)
+        color: var(--todoListInner-color)
+        transition: background-color, color .4s linear
     &__add
         display: flex
         justify-content: space-between
@@ -60,20 +63,26 @@ h1, h2, h3, h4, h5, h6
             outline: none
             height: 40px
             width: 300px
+            background-color: var(--todoListAdd-bc)
             padding: 0 10px
-            border-radius: 15px
+            color: var(--todoListAdd-color)
+            transition: background-color, color .4s linear
             +textCharact(20px, 40px, 300)
+            border-radius: 15px
             +animationShadow(shadowInput, 3s, linear, infinite, #FF0000)
+            &::placeholder
+                color: var(--todoPlaceholder-color)
+                transition: color .4s linear
         button
             position: relative
             width: 40px
             height: 40px
             border-radius: 50%
-            background-color: #fff
+            background-color: var(--todoListAdd-bc)
+            transition: background-color .4s linear
             border: 0
             outline: none
             cursor: pointer
-            transition: transform .1s linear
             +animationShadow(shadowButton, 3s, linear, infinite, #2400FF)
             &:active
                 transform: scale(.9)
@@ -81,12 +90,14 @@ h1, h2, h3, h4, h5, h6
                 @extend %before-after
                 width: 2px
                 height: 20px
-                background-color: #000
+                background-color: var(--todoListButton-bc)
+                transition: background-color .4s linear
             &:after
                 @extend %before-after
                 width: 20px
                 height: 2px
-                background-color: #000
+                background-color: var(--todoListButton-bc)
+                transition: background-color .4s linear
     &__title
         +textCharact(40px, 1.25, 500)
         margin-bottom: 30px
@@ -96,18 +107,35 @@ h1, h2, h3, h4, h5, h6
         +textCharact(20px, 1.25, 400)
     svg
         ellipse
-            +animationSvg(ell, 3s, linear, infinite, #000, #af0000)
+            +animationSvg(ell, 3s, linear, infinite, var(--svgHeader-fill), #af0000)
+            &:nth-last-child(1)
+                fill: var(--svgPupil-fill)
+                transition: fill .4s linear
+            &:nth-last-child(2)
+                fill: var(--svgHeader-fill)
+                transition: fill .4s linear
+            &:nth-last-child(3)
+                fill: var(--svgPupil-fill)
+                transition: fill .4s linear
+            &:nth-last-child(4)
+                fill: var(--svgHeader-fill)
+                transition: fill .4s linear
         path
-            +animationSvg(pa, 3s, linear, infinite, #000, #af0000)
+            stroke: var(--svgHeader-fill)
+            transition: stroke .4s linear
+            +animationSvg(pa, 3s, linear, infinite, var(--svgHeader-fill), #af0000)
         circle
-            +animationSvg(circ, 3s, linear, infinite, #000, #af0000)
+            stroke: var(--svgHeader-fill)
+            transition: stroke .4s linear
+            +animationSvg(circ, 3s, linear, infinite, var(--svgHeader-fill), #af0000)
 
 .todo
     display: grid
     grid-template-columns: .09fr .05fr .65fr .20fr .16fr 0.05fr
     align-items: center
-    background: #fff
     padding: 10px
+    background-color: var(--todo-bc)
+    transition: background-color .4s linear
     border-radius: 15px
     margin-bottom: 10px
     &:nth-child(odd)
@@ -169,9 +197,10 @@ h1, h2, h3, h4, h5, h6
         &:active
             opacity: 0
             transition: .4s linear
-        &::after
+        &:after
             @extend %before-after
-            background-image: url('../images/dest/icon-delete.svg')
+            background-image: var(--todoDelete-img)
+            transition: background-image .4s linear
             background-repeat: no-repeat
             width: 17px
             height: 17px
@@ -216,6 +245,7 @@ h1, h2, h3, h4, h5, h6
         border-radius: 30px
         cursor: pointer
         transition: .4s linear
+        +animationShadow(theme, 3s, linear, infinite, var(--themeCheckbox-shadow))
         &:before
             @extend %pseudo-elements
             z-index: 1
@@ -236,12 +266,7 @@ h1, h2, h3, h4, h5, h6
             width: 9px
             height: 9px
             transition: .4s linear
+            color: #a0a0a0
 
-.theme_dark
-    background-color: #545050
-    transition: .4s linear
-.theme_light
-    background-color: #bdbdbd
-    transition: .4s linear
 
 @import "media"
